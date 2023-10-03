@@ -21,7 +21,7 @@ const client = new MongoClient(uri, {
 
 const noticeCollection = client.db("mtsc").collection("notice");
 const teacherCollection = client.db("mtsc").collection("teacher");
-const sectionCollection = client.db("mtsc").collection("section");
+const sectionCollection = client.db("mtsc").collection("sectiondata");
 async function run() {
   app.get("/notice/", async (req, res) => {
     const query = {};
