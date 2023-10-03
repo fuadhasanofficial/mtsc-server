@@ -21,6 +21,7 @@ const client = new MongoClient(uri, {
 
 const noticeCollection = client.db("mtsc").collection("notice");
 const teacherCollection = client.db("mtsc").collection("teacher");
+const sectionCollection = client.db("mtsc").collection("section");
 async function run() {
   app.get("/notice/", async (req, res) => {
     const query = {};
@@ -44,6 +45,12 @@ async function run() {
     const cursor = teacherCollection.find(query);
     const teacherData = await cursor.toArray();
     res.send(teacherData);
+  });
+  app.get("/section", async (req, res) => {
+    const query = {};
+    const cursor = sectionCollection.find(query);
+    const sectionData = await cursor.toArray();
+    res.send(sectionData);
   });
   try {
   } finally {
