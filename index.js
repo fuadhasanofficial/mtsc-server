@@ -20,6 +20,7 @@ const client = new MongoClient(uri, {
 });
 
 const noticeCollection = client.db("mtsc").collection("notice");
+const teacherCollection = client.db("mtsc").collection("teacher");
 async function run() {
   app.get("/notice/", async (req, res) => {
     const query = {};
@@ -37,6 +38,13 @@ async function run() {
     const result = await noticeCollection.insertOne(noticeData);
     res.send(result);
   });
+
+  app.get("/teachers", async (req, res) => {
+    const query = {};
+    const cursor = teacherCollection.find(query);
+    const teacherData = await cursor.toArray();
+    res.send(teacherData);
+  });
   try {
   } finally {
   }
@@ -46,3 +54,5 @@ run().catch(console.dir);
 app.listen(port, () => {
   console.log("server is running");
 });
+
+// কি ঠিক আছে তো ?
